@@ -63,8 +63,8 @@ def main():
     net_income = st.number_input(
         "Annual Net Income (x€1000) [use https://thetax.nl]", value=29.63
     )
-    adults = st.number_input("Number of Adults", value=1, step=1)
-    children = st.number_input("Number of Children", value=0, step=1)
+    adults = st.number_input("Number of Adults", value=1, step=1, min_value=1, max_value=4)
+    children = st.number_input("Number of Children", value=0, step=1, min_value=0, max_value=4)
 
     # Button to trigger calculation and plot
     if st.button("Generate Plot"):
