@@ -108,7 +108,7 @@ def process(net_income, na, nk):
         fontsize=10,
     )
     plt.xlabel(f"Net Income (x€1000)")
-    plt.ylabel("PMF")
+    plt.ylabel("P(Income)")
     return fig
 
 
