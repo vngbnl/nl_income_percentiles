@@ -49,6 +49,7 @@ counts = np.array([  4,   1,   2,  21,  38,  46,  52,  52,  57,  62,  85, 158, 3
          6,   6,  95])
 # fmt: on
 cdf = np.cumsum(counts) / counts.sum()
+norm_counts = counts / counts.sum()
 
 
 def equivalence_factor(num_adults: int = 1, num_kids: int = 0) -> float:
@@ -90,16 +91,16 @@ def process(net_income, na, nk):
     bar_colours = ["blue" if i != bin_idx else "orange" for i in range(len(incomes))]
 
     fig, _ = plt.subplots(dpi=300)
-    plt.bar(incomes, counts, width=bar_width, color=bar_colours)
+    plt.bar(incomes, norm_counts, width=bar_width, color=bar_colours)
 
-    bar_height = counts[bin_idx]
+    bar_height = norm_counts[bin_idx]
     bar_x = incomes[bin_idx]
 
     text = f"€{net_income}k net is in the {pctile:.1f} percentile\nof incomes for household type\n{na} Adult(s) and {nk} children"
     plt.annotate(
         text,
         xy=(bar_x, bar_height),
-        xytext=(max(incomes), max(counts)),
+        xytext=(max(incomes), max(norm_counts)),
         arrowprops=dict(facecolor="black", arrowstyle="->"),
         bbox=dict(boxstyle="round,pad=0.3", edgecolor="black", facecolor="lightyellow"),
         horizontalalignment="right",
@@ -107,7 +108,7 @@ def process(net_income, na, nk):
         fontsize=10,
     )
     plt.xlabel(f"Net Income (x€1000)")
-    plt.ylabel("Number of Households")
+    plt.ylabel("PMF")
     return fig
 
 
