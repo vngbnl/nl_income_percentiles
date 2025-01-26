@@ -57,7 +57,7 @@ def equivalence_factor(num_adults: int = 1, num_kids: int = 0) -> float:
 
 
 def main():
-    st.title("NL Estimated Income Percentile")
+    st.title("NL Estimated Income Percentiles")
 
     # Input fields for Net Income, Adults, and Children
     net_income = st.number_input(
@@ -89,7 +89,7 @@ def process(net_income, na, nk):
     bar_width = (incomes[1] - incomes[0]) / 2
     bar_colours = ["blue" if i != bin_idx else "orange" for i in range(len(incomes))]
 
-    fig, _ = plt.subplots(dpi=200)
+    fig, _ = plt.subplots(dpi=300)
     plt.bar(incomes, counts, width=bar_width, color=bar_colours)
 
     bar_height = counts[bin_idx]
@@ -106,7 +106,7 @@ def process(net_income, na, nk):
         verticalalignment="top",
         fontsize=10,
     )
-    plt.xlabel(f"Income (x€1000)")
+    plt.xlabel(f"Net Income (x€1000)")
     plt.ylabel("Number of Households")
     return fig
 
